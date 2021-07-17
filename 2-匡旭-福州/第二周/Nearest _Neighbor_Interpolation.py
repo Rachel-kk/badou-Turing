@@ -18,25 +18,28 @@ def Nearest_Neighbor_Inter(src_data, dst_height, dst_width):
 
     return dst_data
 
+
 def Nearest_Neighbor_Inter_Class(src_data, dst_height, dst_width):
-    ori_height, ori_width, channels =  src_data.shape
+    ori_height, ori_width, channels = src_data.shape
     dst_data = np.zeros((dst_height, dst_width, channels), np.uint8)
     ratio_height = ori_height / dst_height
     ratio_width = ori_width / dst_width
-    for i in range(dst_height) :
-        for j in range(dst_width) :
+    for i in range(dst_height):
+        for j in range(dst_width):
             x = int(i * ratio_width)
             y = int(j * ratio_height)
             dst_data[j, i] = src_data[y, x]
 
     return dst_data
 
+
 # OpenCV实现最近邻插值
 def Nearest_Neighbor_Inter_OpenCV(src_data, dst_height, dst_width):
     dst_data = cv2.resize(src_data, (dst_width, dst_height), interpolation=cv2.INTER_NEAREST)
     return dst_data
 
-if __name__ == '__main__' :
+
+if __name__ == '__main__':
     path = 'lenna.png'
     height = 128
     width = 128
@@ -47,7 +50,6 @@ if __name__ == '__main__' :
     # matplotlib 实现图片显示
     plt.imshow(img1)
     plt.show()
-
 
     # OpenCV实现图片显示
     img1 = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)
